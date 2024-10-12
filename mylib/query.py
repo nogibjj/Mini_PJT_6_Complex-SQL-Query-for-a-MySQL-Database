@@ -72,10 +72,6 @@ def queryUpdate():
                     WHEN Attrition IS NULL OR Attrition = '' THEN '9999999'
                     ELSE Attrition
                 END,
-            BusinessTravel = CASE
-                    WHEN BusinessTravel IS NULL OR BusinessTravel = '' THEN '9999999'
-                    ELSE BusinessTravel
-                END,
             DailyRate = CASE
                     WHEN DailyRate IS NULL OR DailyRate = '' THEN 9999999
                     ELSE DailyRate
@@ -95,10 +91,6 @@ def queryUpdate():
             EducationField = CASE
                     WHEN EducationField IS NULL OR EducationField = '' THEN '9999999'
                     ELSE EducationField
-                END,
-            EmployeeCount = CASE
-                    WHEN EmployeeCount IS NULL OR EmployeeCount = '' THEN 9999999
-                    ELSE EmployeeCount
                 END,
             EmployeeNumber = CASE
                     WHEN EmployeeNumber IS NULL OR EmployeeNumber = '' THEN 9999999

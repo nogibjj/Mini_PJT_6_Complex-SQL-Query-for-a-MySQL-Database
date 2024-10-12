@@ -1,32 +1,44 @@
-# """
 """
-Test goes here
+Test cases for data extraction, transformation, and CRUD operations
 """
 from main import main_res
 
 
 def test_extract():
-    assert main_res()["extract_to"] == "HR.csv", "Test for extract() failed"
+    # Update the test to reflect the two CSV files
+    result = main_res()
+    assert result["extract_personal"] == "HR_1.csv", "Test for extracting HR_1.csv failed"
+    assert result["extract_attrition"] == "HR_2.csv", "Test for extracting HR_2.csv failed"
 
 
 def test_transform():
-    assert main_res()["transform_db"] == "HR.db", "Test for load() failed"
+    # Ensure the transformation step applies to both datasets
+    result = main_res()
+    assert result["transform_db"] == "HR.db", "Test for database load failed"
 
 
 def test_create():
-    assert main_res()["create"] == "Create Success", "Test for queryCreate() failed"
+    # Ensure the create operation succeeded for both datasets
+    result = main_res()
+    assert result["create"] == "Create Success", "Test for queryCreate() failed"
 
 
 def test_read():
-    assert main_res()["read"] == "Read Success", "Test for queryRead() failed"
+    # Ensure reading operation works for both tables in the database
+    result = main_res()
+    assert result["read"] == "Read Success", "Test for queryRead() failed"
 
 
 def test_update():
-    assert main_res()["update"] == "Update Success", "Test for queryUpdate() failed"
+    # Ensure the update operation works for both tables
+    result = main_res()
+    assert result["update"] == "Update Success", "Test for queryUpdate() failed"
 
 
 def test_delete():
-    assert main_res()["delete"] == "Delete Success", "Test for queryDelete() failed"
+    # Ensure the delete operation works for both tables
+    result = main_res()
+    assert result["delete"] == "Delete Success", "Test for queryDelete() failed"
 
 
 if __name__ == "__main__":
@@ -37,24 +49,3 @@ if __name__ == "__main__":
     test_update()
     test_delete()
     print("All tests passed!")
-
-
-# Test goes here
-# """
-# from main import main_res
-
-
-# def test_func():
-#     return main_res()
-
-
-# if __name__ == "__main__":
-#     # Test each expected output
-#     assert test_func()["extract_to"] == "HR.csv", "Test for extract() failed"
-#     assert test_func()["transform_db"] == "HR.db", "Test for load() failed"
-#     assert test_func()["create"] == "Create Success", "Test for queryCreate() failed"
-#     assert test_func()["read"] == "Read Success", "Test for queryRead() failed"
-#     assert test_func()["update"] == "Update Success", "Test for queryUpdate() failed"
-#     assert test_func()["delete"] == "Delete Success", "Test for queryDelete() failed"
-
-#     print("All tests passed!")
