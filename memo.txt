@@ -1,2 +1,0 @@
-#MAKEFILE for machine
-# CI/CD

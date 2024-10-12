@@ -99,7 +99,8 @@ def load_data_to_db(dataset_personal="HR_1.csv", dataset_attrition="HR_2.csv"):
             conn.commit()
             conn.close()
             print("Finished inserting data into hr_attrition_data.")
-            return "Data inserted successfully."
+            return "success"
 
 if __name__ == "__main__":
     load_data_to_db()
+

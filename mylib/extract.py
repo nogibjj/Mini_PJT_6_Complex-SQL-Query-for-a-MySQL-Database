@@ -3,16 +3,18 @@
 import requests
 
 def extract(
-    url="https://raw.githubusercontent.com/nogibjj/Mini_PJT_3_Polars_ISL/refs/heads/main/HR.csv",
-    file_path="HR.csv",
+    url1="https://raw.githubusercontent.com/nogibjj/Mini_PJT_3_Polars_ISL/refs/heads/main/HR_1.csv",
+    file_path1="HR.csv",
+    url1="https://raw.githubusercontent.com/nogibjj/Mini_PJT_3_Polars_ISL/refs/heads/main/HR_1.csv",
+    file_path1="HR.csv",
     timeout=10
 ):
     try:
         response = requests.get(url, timeout=timeout)
         response.raise_for_status()  # Raises an error for bad status codes
-        with open(file_path, "wb") as f:
+        with open(file_path1, "wb") as f:
             f.write(response.content)
-        return file_path
+        return file_path1
     except (requests.exceptions.RequestException, OSError):
         return None
 
