@@ -2,6 +2,15 @@ from databricks import sql
 from dotenv import load_dotenv
 import os
 
+# Define a global variable for the log file
+LOG_FILE = "query_log.md"
+
+def log_query(query_text, query_result="none"):
+    """Adds the SQL query and its result to a markdown log file"""
+    with open(LOG_FILE, "a", encoding="utf-8") as file:  # Specify encoding
+        file.write(f"```sql\n{query_text}\n```\n\n")
+        file.write(f"```response from databricks\n{query_result}\n```\n\n")
+
 # Query module for the HR database
 complex_query = """
 SELECT 
@@ -26,8 +35,8 @@ server_hostname = os.getenv("sql_server_host")
 access_token = os.getenv("databricks_api_key")
 http_path = os.getenv("sql_http")
 
-def query():
-    """Execute a SQL query on Databricks SQL Warehouse and print results."""
+def run_query():
+    """Execute a SQL query on Databricks SQL, print and log results."""
     # Connect to the Databricks SQL Warehouse
     with sql.connect(
         server_hostname=server_hostname, 
@@ -42,10 +51,13 @@ def query():
             for row in query_result:
                 print(row)
 
+            # Log the query and its result
+            log_query(complex_query, query_result)
+
             # Print success message
             print("Query completed successfully.")
-            return "success"  # Return success if query executes correctly
+            return "success"  
 
 # Execute the complex query when the script runs
 if __name__ == "__main__":
-    result = query()
+    result = run_query()

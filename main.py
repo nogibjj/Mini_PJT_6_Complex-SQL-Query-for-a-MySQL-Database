@@ -1,6 +1,6 @@
 from mylib.extract import extract
 from mylib.transform import load_data_to_db
-from mylib.query import query
+from mylib.query import run_query
 
 # Main function to handle 3 key processes: Extract, Transform & Load, and Query
 def main_res():
@@ -11,7 +11,7 @@ def main_res():
     transform_result = load_data_to_db()
 
     print("Querying the database...")
-    query_result = query()
+    query_result = run_query()
 
     # Store results in a dictionary
     results = {
