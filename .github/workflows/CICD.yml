@@ -11,10 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Environment Variables
+        run: |
+          echo "SERVER_HOSTNAME=${{ secrets.SERVER_HOSTNAME }}" >> $GITHUB_ENV
+          echo "HTTP_PATH=${{ secrets.HTTP_PATH }}" >> $GITHUB_ENV
+          echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> $GITHUB_ENV
       - name: install packages
         run: make install
-      - name: install local package
-        run: make setup_package
       - name: lint
         run: make lint
       - name: extract 
@@ -24,12 +27,10 @@ jobs:
       - name: query
         run: make query
       - name: test
-        env: 
-          DATABRICKS_API_KEY: ${{ secrets.DATABRICKS_API_KEY }}
-          SQL_SERVER_HOST: ${{ secrets.SQL_SERVER_HOST }}
-          SQL_HTTP: ${{ secrets.SQL_HTTP }}
         run: make test
       - name: format
         run: make format
       - name: generate_and_push
         run: make generate_and_push
+      - name: deploy
+        run: make deploy
