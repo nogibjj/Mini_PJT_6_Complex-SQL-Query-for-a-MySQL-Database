@@ -86,6 +86,8 @@ if __name__ == "__main__":
     result = load_data_to_db()
 
 
+# test3
+
 # import os
 # import pandas as pd
 # from databricks import sql
