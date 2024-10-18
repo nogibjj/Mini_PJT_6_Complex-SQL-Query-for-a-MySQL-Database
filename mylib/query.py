@@ -1,125 +1,34 @@
-# Step 3
-# """Query the database"""
-
-import sqlite3
-
-
-def queryCreate():
-    conn = sqlite3.connect("HR.db")
-    cursor = conn.cursor()
-
-    # Ensure the table exists
-    cursor.execute(
-        """
-        CREATE TABLE IF NOT EXISTS HR (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            Age INTEGER,
-            Attrition TEXT,
-            BusinessTravel TEXT,
-            DailyRate INTEGER,
-            Department TEXT,
-            DistanceFromHome INTEGER,
-            Education INTEGER,
-            EducationField TEXT,
-            EmployeeCount INTEGER,
-            EmployeeNumber INTEGER
-        )
-        """
-    )
-
-    # Insert data into the correct table and with correct placeholders
-    cursor.execute(
-        """
-        INSERT INTO HR 
-        (Age, Attrition, BusinessTravel, DailyRate, Department, DistanceFromHome, 
-        Education, EducationField, EmployeeCount, EmployeeNumber)
-        VALUES(30, 'Yes', 'Travel_Rarely', 1100, 'Sales', 5, 3, 'Life Sciences', 1, 12345)
-        """
-    )
-
-    # Commit the transaction
-    conn.commit()
-    conn.close()
-    return "Create Success"
+"""Query the database from a db connection to Azure Databricks"""
+import os
+from databricks import sql
+from dotenv import load_dotenv
 
 
-def queryRead():
-    conn = sqlite3.connect("HR.db")
-    cursor = conn.cursor()
-
-    # Read and fetch results from the HR table, limit the results
-    cursor.execute("SELECT * FROM HR")
-    # results = cursor.fetchall()  # Fetch the result of the query
-
-    conn.close()
-    return "Read Success"
+# Define a global variable for the log file
+LOG_FILE = "query_log.md"
 
 
-def queryUpdate():
-    conn = sqlite3.connect("HR.db")
-    cursor = conn.cursor()
-
-    # Update the data and commit the changes
-    cursor.execute(
-         """
-        UPDATE HR
-        SET 
-            Age = CASE
-                    WHEN Age IS NULL OR Age = '' THEN 9999999
-                    ELSE Age
-                END,
-            Attrition = CASE
-                    WHEN Attrition IS NULL OR Attrition = '' THEN '9999999'
-                    ELSE Attrition
-                END,
-            DailyRate = CASE
-                    WHEN DailyRate IS NULL OR DailyRate = '' THEN 9999999
-                    ELSE DailyRate
-                END,
-            Department = CASE
-                    WHEN Department IS NULL OR Department = '' THEN '9999999'
-                    ELSE Department
-                END,
-            DistanceFromHome = CASE
-                    WHEN DistanceFromHome IS NULL OR DistanceFromHome = '' THEN 9999999
-                    ELSE DistanceFromHome
-                END,
-            Education = CASE
-                    WHEN Education IS NULL OR Education = '' THEN 9999999
-                    ELSE Education
-                END,
-            EducationField = CASE
-                    WHEN EducationField IS NULL OR EducationField = '' THEN '9999999'
-                    ELSE EducationField
-                END,
-            EmployeeNumber = CASE
-                    WHEN EmployeeNumber IS NULL OR EmployeeNumber = '' THEN 9999999
-                    ELSE EmployeeNumber
-                END
-        WHERE id = 1
-        """
-    )
+def log_query(query, result="none"):
+    """adds to a query markdown file"""
+    with open(LOG_FILE, "a") as file:
+        file.write(f"```sql\n{query}\n```\n\n")
+        file.write(f"```response from databricks\n{result}\n```\n\n")
 
 
-    conn.commit()  # Commit the update
-    conn.close()
-    return "Update Success"
+def general_query(query):
+    """runs a query a user inputs"""
 
-
-def queryDelete():
-    conn = sqlite3.connect("HR.db")
-    cursor = conn.cursor()
-
-    # Delete the record and commit the changes
-    cursor.execute("DELETE FROM HR WHERE id = 3")
-
-    conn.commit()  # Commit the deletion
-    conn.close()
-    return "Delete Success"
-
-
-if __name__ == "__main__":
-    print(queryCreate())
-    print(queryRead())
-    print(queryUpdate())
-    print(queryDelete())
+    load_dotenv()
+    server_h = os.getenv("sql_server_host")
+    access_token = os.getenv("databricks_api_key")
+    http_path = os.getenv("sql_http")
+    with sql.connect(
+        server_hostname=server_h,
+        http_path=http_path,
+        access_token=access_token,
+    ) as connection:
+        c = connection.cursor()
+        c.execute(query)
+        result = c.fetchall()
+    c.close()
+    log_query(f"{query}", result)

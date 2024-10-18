@@ -3,7 +3,7 @@ Main cli or app entry point
 """
 from mylib.extract import extract
 from mylib.transform import load
-from mylib.query import queryCreate, queryRead, queryUpdate, queryDelete
+from mylib.query_past import queryCreate, queryRead, queryUpdate, queryDelete
 
 # Extract
 extract()
