@@ -27,4 +27,13 @@ generate_and_push:
 		echo "No changes to commit. Skipping commit and push."; \
 	fi
 
+extract:
+	python mylib/extract.py
+
+transform: 
+	python mylib/transform.py
+
+query:
+	python mylib/query.py
+
 all: install format lint test 
