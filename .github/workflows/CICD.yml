@@ -14,7 +14,7 @@ jobs:
       # - name: Set up Environment Variables
       #   run: |
       #     echo "SERVER_HOSTNAME=${{ secrets.SERVER_HOSTNAME }}" >> $GITHUB_ENV
-      #     echo "sql_http=${{ secrets.HTTP_PATH }}" >> $GITHUB_ENV
+      #     echo "HTTP_PATHp=${{ secrets.HTTP_PATH }}" >> $GITHUB_ENV
       #     echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> $GITHUB_ENV
       - name: install packages
         run: make install
@@ -29,8 +29,8 @@ jobs:
       - name: test
         env:
           SERVER_HOSTNAME : ${{ secrets.SERVER_HOSTNAME }}
-          sql_http : ${{ secrets.HTTP_PATH }}
-          sql_server_host : ${{ secrets.ACCESS_TOKEN }}
+          HTTP_PATH : ${{ secrets.HTTP_PATH }}
+          ACCESS_TOKEN : ${{ secrets.ACCESS_TOKEN }}
         run: make test
       - name: format
         run: make format

@@ -18,9 +18,9 @@ def load_data_to_db(dataset_personal="HR_1.csv", dataset_attrition="HR_2.csv"):
 
     # Step 2: Load environment variables for database connection
     load_dotenv()
-    server_hostname = os.getenv("sql_server_host")
-    access_token = os.getenv("databricks_api_key")
-    http_path = os.getenv("sql_http")
+    server_hostname = os.getenv("SERVER_HOSTNAME")
+    access_token = os.getenv("DATABRICKS_KEY")
+    http_path = os.getenv("HTTP_PATH")
 
     # Step 3: Connect to Databricks SQL Warehouse
     with sql.connect(

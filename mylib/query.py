@@ -31,9 +31,9 @@ ORDER BY
 
 # Load environment variables for Databricks connection
 load_dotenv()
-server_hostname = os.getenv("sql_server_host")
-access_token = os.getenv("databricks_api_key")
-http_path = os.getenv("sql_http")
+server_hostname = os.getenv("SERVER_HOSTNAME")
+access_token = os.getenv("DATABRICKS_KEY")
+http_path = os.getenv("HTTP_PATH")
 
 def run_query():
     """Execute a SQL query on Databricks SQL, print and log results."""
