@@ -14,19 +14,19 @@ def log_query(query_text, query_result="none"):
 # Query module for the HR database
 complex_query = """
 SELECT 
-    p.EmployeeNumber, 
-    p.Age, 
-    p.Gender, 
-    a.Attrition, 
-    a.Department
+    a.Department, 
+    COUNT(p.EmployeeNumber) AS TotalEmployees, 
+    SUM(CASE WHEN a.Attrition = 'Yes' THEN 1 ELSE 0 END) AS TotalAttrition
 FROM 
     hr_personal_data AS p
 LEFT JOIN 
     hr_attrition_data AS a
 ON 
     p.EmployeeNumber = a.EmployeeNumber
+GROUP BY 
+    a.Department
 ORDER BY 
-    p.EmployeeNumber ASC;
+    a.Department ASC;
 """
 
 # Load environment variables for Databricks connection
