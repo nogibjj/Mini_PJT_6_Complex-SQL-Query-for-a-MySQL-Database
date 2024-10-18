@@ -320,3 +320,49 @@ ORDER BY
 [Row(Department='Human Resources', TotalEmployees=27720, TotalAttrition=5280), Row(Department='Research & Development', TotalEmployees=422840, TotalAttrition=58520), Row(Department='Sales', TotalEmployees=196240, TotalAttrition=40480)]
 ```
 
+```sql
+
+SELECT 
+    a.Department, 
+    COUNT(p.EmployeeNumber) AS TotalEmployees, 
+    SUM(CASE WHEN a.Attrition = 'Yes' THEN 1 ELSE 0 END) AS TotalAttrition
+FROM 
+    hr_personal_data AS p
+LEFT JOIN 
+    hr_attrition_data AS a
+ON 
+    p.EmployeeNumber = a.EmployeeNumber
+GROUP BY 
+    a.Department
+ORDER BY 
+    a.Department ASC;
+
+```
+
+```response from databricks
+[Row(Department='Human Resources', TotalEmployees=36225, TotalAttrition=6900), Row(Department='Research & Development', TotalEmployees=552575, TotalAttrition=76475), Row(Department='Sales', TotalEmployees=256450, TotalAttrition=52900)]
+```
+
+```sql
+
+SELECT 
+    a.Department, 
+    COUNT(p.EmployeeNumber) AS TotalEmployees, 
+    SUM(CASE WHEN a.Attrition = 'Yes' THEN 1 ELSE 0 END) AS TotalAttrition
+FROM 
+    hr_personal_data AS p
+LEFT JOIN 
+    hr_attrition_data AS a
+ON 
+    p.EmployeeNumber = a.EmployeeNumber
+GROUP BY 
+    a.Department
+ORDER BY 
+    a.Department ASC;
+
+```
+
+```response from databricks
+[Row(Department='Human Resources', TotalEmployees=39312, TotalAttrition=7488), Row(Department='Research & Development', TotalEmployees=599664, TotalAttrition=82992), Row(Department='Sales', TotalEmployees=278304, TotalAttrition=57408)]
+```
+

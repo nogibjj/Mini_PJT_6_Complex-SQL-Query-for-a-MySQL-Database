@@ -27,7 +27,6 @@ test:
 # 		git push; \
 # 	else \
 # 		echo "No changes to commit. Skipping commit and push."; \
-# 	fi
 
 extract:
 	python mylib/extract.py
