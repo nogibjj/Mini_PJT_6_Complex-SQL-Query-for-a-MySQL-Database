@@ -4,28 +4,34 @@
 #### Status(CI/CD) badge
 [![CI](https://github.com/nogibjj/Mini_PJT_6_Complex-SQL-Query-for-a-MySQL-Database/actions/workflows/CICD.yml/badge.svg)](https://github.com/nogibjj/Mini_PJT_6_Complex-SQL-Query-for-a-MySQL-Database/actions/workflows/CICD.yml)
 ------
+
 ### Project Purpose TBD
 
-#### This project focuses on integrating Python scripting with SQL databases, allowing for efficient data manipulation and retrieval. The main objectives are to establish database connections, perform CRUD (Create, Read, Update, Delete) operations, and execute various SQL queries.
+#### This project focuses on i
 -----
 
 ### Requirements
-The project structure must include the following files:
 
-* ***Connect to a SQL database*** 
-* ***Perform CRUD operations*** 
-* ***Write at least two different SQL queries***
+* ***Design a complex SQL query involving joins, aggregation, and sorting***
+* ***Provide an explanation for what the query is doing and the expected results***
+
 
 ---------
 ### Dataset
-File name : [HR.csv](HR.csv) 
+File name : [HR_1.csv](HR_1.csv), [HR_2.csv](HR_2.csv) save in data_raw folder
  - The data used in this project originally comes from IBM. For reusability, I imported this from my last project [Link](https://raw.githubusercontent.com/nogibjj/Mini_PJT_3_Polars_ISL/refs/heads/main/HR.csv)
 
 ----------
-### Summary
-In this project, I developed a workflow pipeline that integrates an external data source with an SQLite database, enabling the execution of SQL queries through a Python script. The SQL queries perform the four essential operations typically carried out on a database or data repository: Create, Read, Update, and Delete (CRUD).
+### Query
+* extract and transform : HR_1.csv -> ['EmployeeNumber', 'Age', 'Gender', 'Education']-> hr_personal_data.csv -> 
+HR_2.csv -> ['EmployeeNumber', 'Department', 'JobRole', 'Attrition']
 
-![Overview](Overview.png)
+* query : 
+(1) Join : merging two data sets, employeenumber column is index 
+(2) Aggregation : If attrition is Yes, count
+(3) Sort : sorting by departments name       
+
+![Query](Screenshot.png)
 
 ### Structure
 CRUD operation [Link](query.py)
