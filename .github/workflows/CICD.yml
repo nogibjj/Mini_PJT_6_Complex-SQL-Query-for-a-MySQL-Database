@@ -30,7 +30,7 @@ jobs:
         env:
           SERVER_HOSTNAME : ${{ secrets.SERVER_HOSTNAME }}
           HTTP_PATH : ${{ secrets.HTTP_PATH }}
-          ACCESS_TOKEN : ${{ secrets.DATABRICKS_KEY }}
+          DATABRICKS_KEY : ${{ secrets.DATABRICKS_KEY }}
         run: make test
       - name: format
         run: make format
