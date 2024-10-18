@@ -35,9 +35,9 @@ def test_query():
 
 if __name__ == "__main__":
     # Run all tests
-    # test_extract()
+    test_extract()
     test_transform()
-    # test_query()
+    test_query()
     print("All tests passed successfully")
 
 

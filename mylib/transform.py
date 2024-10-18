@@ -30,54 +30,54 @@ def load_data_to_db(dataset_personal="HR_1.csv", dataset_attrition="HR_2.csv"):
 
         with conn.cursor() as c:
             print("Connected to Databricks SQL Warehouse.")
-            # # Step 4: Create 'hr_personal_data' table if it doesn't exist
-            # c.execute(
-            #     """
-            #     CREATE TABLE IF NOT EXISTS hr_personal_data (
-            #         EmployeeNumber INT,
-            #         Age INT,
-            #         Gender STRING,
-            #         Education STRING
-            #     )
-            #     """
-            # )
+            # Step 4: Create 'hr_personal_data' table if it doesn't exist
+            c.execute(
+                """
+                CREATE TABLE IF NOT EXISTS hr_personal_data (
+                    EmployeeNumber INT,
+                    Age INT,
+                    Gender STRING,
+                    Education STRING
+                )
+                """
+            )
 
-            # # Step 5: Insert data into 'hr_personal_data' table if not empty
-            # if not df_personal_data.empty:
-            #     values = [tuple(row) for row in df_personal_data.values]
-            #     string_sql = (
-            #         "INSERT INTO hr_personal_data "
-            #         "(EmployeeNumber, Age, Gender, Education) VALUES"
-            #     )
-            #     string_sql += "\n" + ",\n".join([str(v) for v in values]) + ";"
-            #     c.execute(string_sql)
-            #     print("Finished batch inserting data into hr_personal_data.")
+            # Step 5: Insert data into 'hr_personal_data' table if not empty
+            if not df_personal_data.empty:
+                values = [tuple(row) for row in df_personal_data.values]
+                string_sql = (
+                    "INSERT INTO hr_personal_data "
+                    "(EmployeeNumber, Age, Gender, Education) VALUES"
+                )
+                string_sql += "\n" + ",\n".join([str(v) for v in values]) + ";"
+                c.execute(string_sql)
+                print("Finished batch inserting data into hr_personal_data.")
 
-            # # Step 6: Create 'hr_attrition_data' table if it doesn't exist
-            # c.execute(
-            #     """
-            #     CREATE TABLE IF NOT EXISTS hr_attrition_data (
-            #         EmployeeNumber INT,
-            #         Department STRING,
-            #         JobRole STRING,
-            #         Attrition STRING
-            #     )
-            #     """
-            # )
+            # Step 6: Create 'hr_attrition_data' table if it doesn't exist
+            c.execute(
+                """
+                CREATE TABLE IF NOT EXISTS hr_attrition_data (
+                    EmployeeNumber INT,
+                    Department STRING,
+                    JobRole STRING,
+                    Attrition STRING
+                )
+                """
+            )
 
-            # # Step 7: Insert data into 'hr_attrition_data' table if not empty
-            # if not df_attrition_data.empty:
-            #     values = [tuple(row) for row in df_attrition_data.values]
-            #     string_sql = (
-            #         "INSERT INTO hr_attrition_data "
-            #         "(EmployeeNumber, Department, JobRole, Attrition) VALUES"
-            #     )
-            #     string_sql += "\n" + ",\n".join([str(v) for v in values]) + ";"
-            #     c.execute(string_sql)
-            #     print("Finished batch inserting data into hr_attrition_data.")
+            # Step 7: Insert data into 'hr_attrition_data' table if not empty
+            if not df_attrition_data.empty:
+                values = [tuple(row) for row in df_attrition_data.values]
+                string_sql = (
+                    "INSERT INTO hr_attrition_data "
+                    "(EmployeeNumber, Department, JobRole, Attrition) VALUES"
+                )
+                string_sql += "\n" + ",\n".join([str(v) for v in values]) + ";"
+                c.execute(string_sql)
+                print("Finished batch inserting data into hr_attrition_data.")
 
-            # # Step 8: Commit the changes to the database
-            # conn.commit()
+            # Step 8: Commit the changes to the database
+            conn.commit()
             print("Data successfully inserted into both tables.")
             return "success"
 
