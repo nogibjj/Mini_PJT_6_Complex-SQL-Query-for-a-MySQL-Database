@@ -11,11 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
-        with:
-          python-version: 3.12
       - name: install packages
         run: make install
+      - name: install local package
+        run: make setup_package
       - name: lint
         run: make lint
       - name: extract 
@@ -25,10 +24,12 @@ jobs:
       - name: query
         run: make query
       - name: test
-        env : 
-          databricks_api_key : ${{ secrets.DATABRICKS_API_KEY }}
-          echo "sql_server_host : ${{ secrets.SQL_SERVER_HOST }}
-          echo "sql_http : ${{ secrets.SQL_HTTP }}
+        env: 
+          DATABRICKS_API_KEY: ${{ secrets.DATABRICKS_API_KEY }}
+          SQL_SERVER_HOST: ${{ secrets.SQL_SERVER_HOST }}
+          SQL_HTTP: ${{ secrets.SQL_HTTP }}
         run: make test
       - name: format
         run: make format
+      - name: generate_and_push
+        run: make generate_and_push
