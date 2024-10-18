@@ -30,3 +30,7 @@ if __name__ == "__main__":
 
     # Print the final results for each process
     print(f"Results: {final_results}")
+
+    # Save results to a JSON file for testing, specifying UTF-8 encoding
+    with open("results.json", "w", encoding="utf-8") as file:  # Encoding specified here
+        json.dump(final_results, file)
