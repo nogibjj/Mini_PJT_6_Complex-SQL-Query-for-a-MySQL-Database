@@ -3,9 +3,9 @@
 import requests
 
 def extract(
-    url1="https://raw.githubusercontent.com/nogibjj/Mini_PJT_6_Complex-SQL-Query-for-a-MySQL-Database/refs/heads/main/HR_1.csv",
+    url1="https://raw.githubusercontent.com/nogibjj/Mini_PJT_6_Complex-SQL-Query-for-a-MySQL-Database/refs/heads/main/data_raw/HR_1.csv",
     file_path1="data/HR_1.csv",
-    url2="https://raw.githubusercontent.com/nogibjj/Mini_PJT_6_Complex-SQL-Query-for-a-MySQL-Database/refs/heads/main/HR_2.csv",
+    url2="https://raw.githubusercontent.com/nogibjj/Mini_PJT_6_Complex-SQL-Query-for-a-MySQL-Database/refs/heads/main/data_raw/HR_2.csv",
     file_path2="data/HR_2.csv",
     timeout=10
 ):
