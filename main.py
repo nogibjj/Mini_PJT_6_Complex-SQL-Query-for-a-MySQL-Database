@@ -1,34 +1,31 @@
-"""
-Main cli or app entry point
-"""
 from mylib.extract import extract
-from mylib.transform import load
-from mylib.query_past import queryCreate, queryRead, queryUpdate, queryDelete
+from mylib.transform import load_data_to_db
+from mylib.query import query
 
-# Extract
-extract()
-
-# Transform and Load
-load()
-
-# Query
-queryCreate()
-queryRead()
-queryUpdate()
-queryDelete()
-
-
+# Main function to handle 3 key processes: Extract, Transform & Load, and Query
 def main_res():
+    print("Extracting data...")
+    extract_result = extract()
+
+    print("Transforming and loading data to database...")
+    transform_result = load_data_to_db()
+
+    print("Querying the database...")
+    query_result = query()
+
+    # Store results in a dictionary
     results = {
-        "extract_to": extract(),
-        "transform_db": load(),
-        "create": queryCreate(),
-        "read": queryRead(),
-        "update": queryUpdate(),
-        "delete": queryDelete(),
+        "extract": extract_result,
+        "transform_db": transform_result,
+        "query": query_result,
     }
 
     return results
 
 
-main_res()
+if __name__ == "__main__":
+    # Call the main function and get the results
+    final_results = main_res()
+
+    # Print the final results for each process
+    print(f"Results: {final_results}")

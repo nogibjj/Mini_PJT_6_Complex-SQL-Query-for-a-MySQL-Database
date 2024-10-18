@@ -1,12 +1,10 @@
-# Step1
-
 import requests
 
 def extract(
     url1="https://raw.githubusercontent.com/nogibjj/Mini_PJT_6_Complex-SQL-Query-for-a-MySQL-Database/refs/heads/main/data_raw/HR_1.csv",
-    file_path1="data/HR_1.csv",
+    file_path1="HR_1.csv",
     url2="https://raw.githubusercontent.com/nogibjj/Mini_PJT_6_Complex-SQL-Query-for-a-MySQL-Database/refs/heads/main/data_raw/HR_2.csv",
-    file_path2="data/HR_2.csv",
+    file_path2="HR_2.csv",
     timeout=10
 ):
     try:
@@ -15,19 +13,19 @@ def extract(
         response1.raise_for_status()  # Raises an error for bad status codes
         with open(file_path1, "wb") as f1:
             f1.write(response1.content)
-        print(f"Downloaded and saved: {file_path1}")
-        
+        print(f"Downloaded and saved {file_path1}")
+                
         # Download and save the second CSV file
         response2 = requests.get(url2, timeout=timeout)
         response2.raise_for_status()  # Raises an error for bad status codes
         with open(file_path2, "wb") as f2:
             f2.write(response2.content)
-        print(f"Downloaded and saved: {file_path2}")
-        
-        return file_path1, file_path2
+        print(f"Downloaded and saved {file_path2}")
+        return "success"
+    
     except (requests.exceptions.RequestException, OSError) as e:
         print(f"An error occurred: {e}")
-        return None, None
+        return "failure"
 
 if __name__ == "__main__":
     extract()
