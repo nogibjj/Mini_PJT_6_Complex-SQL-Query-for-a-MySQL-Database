@@ -27,10 +27,12 @@ jobs:
       - name: query
         run: make query
       - name: test
+        env:
+          SERVER_HOSTNAME : ${{ secrets.SERVER_HOSTNAME }}
+          echo "HTTP_PATH : ${{ secrets.HTTP_PATH }}
+          echo "ACCESS_TOKEN : ${{ secrets.ACCESS_TOKEN }}
         run: make test
       - name: format
         run: make format
       - name: generate_and_push
         run: make generate_and_push
-      - name: deploy
-        run: make deploy
