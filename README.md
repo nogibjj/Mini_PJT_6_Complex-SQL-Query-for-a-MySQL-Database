@@ -1,10 +1,10 @@
 # IDS-706 Data Engineering Assignment
-## Mini Project 5 : Python Script interacting with SQL Database
+## Mini Project 6 : Complex SQL Query for a MySQL Database (Databricks)
 
 #### Status(CI/CD) badge
-[![CI](https://github.com/nogibjj/Mini_PJT_5_Python-with-SQL-Database_ISL/actions/workflows/CICD.yml/badge.svg)](https://github.com/nogibjj/Mini_PJT_5_Python-with-SQL-Database_ISL/actions/workflows/CICD.yml)
+[![CI](https://github.com/nogibjj/Mini_PJT_6_Complex-SQL-Query-for-a-MySQL-Database/actions/workflows/CICD.yml/badge.svg)](https://github.com/nogibjj/Mini_PJT_6_Complex-SQL-Query-for-a-MySQL-Database/actions/workflows/CICD.yml)
 ------
-### Project Purpose
+### Project Purpose TBD
 
 #### This project focuses on integrating Python scripting with SQL databases, allowing for efficient data manipulation and retrieval. The main objectives are to establish database connections, perform CRUD (Create, Read, Update, Delete) operations, and execute various SQL queries.
 -----
@@ -42,3 +42,31 @@ CRUD operation [Link](query.py)
 
 ### Database connection_SQL test
 ##![SQL](SQL.png)
+```
+Mini_PJT_6_Complex-SQL-Query-for-a-MySQL-Database
+├─ .devcontainer
+│  ├─ Dockerfile
+│  └─ devcontainer.json
+├─ .github
+│  └─ workflows
+│     └─ CICD.yml
+├─ HR_1.csv
+├─ HR_2.csv
+├─ Makefile
+├─ README.md
+├─ data
+├─ data_raw
+│  ├─ HR_1.csv
+│  └─ HR_2.csv
+├─ main.py
+│  ├─ extract.py
+│  ├─ query.py
+│  ├─ query_log.md
+│  └─ transform.py
+├─ query_log.md
+├─ query_log_image.png
+├─ requirements.txt
+├─ results.json
+└─ test_main.py
+
+```
