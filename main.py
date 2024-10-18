@@ -30,7 +30,3 @@ if __name__ == "__main__":
 
     # Print the final results for each process
     print(f"Results: {final_results}")
-
-    # Save results to a file (for testing purposes)
-    with open("results.json", "w") as file:
-        json.dump(final_results, file)
