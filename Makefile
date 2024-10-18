@@ -1,4 +1,3 @@
-
 install:
 	pip install --upgrade pip && pip install -r requirements.txt
 
@@ -9,8 +8,11 @@ lint:
 	pylint --disable=R,C --ignore-patterns=test_.*?py *.py mylib/*.py
 	# ruff check *.py mylib/*.py test_*.py 
 
+run_make:
+	python main.py  # Execute the main.py script
+
 test: 
-	python -m pytest -vv --nbval -cov=mylib -cov=main test_main.py 
+	python -m pytest -vv --nbval -cov=mylib -cov=main test_main.py  # Run tests after main.py
 
 generate_and_push:
 	# Create the markdown file 
@@ -36,4 +38,5 @@ transform:
 query:
 	python mylib/query.py
 
-all: install format lint test 
+# The all target ensures the correct order of operations
+all: install format lint run_make test
