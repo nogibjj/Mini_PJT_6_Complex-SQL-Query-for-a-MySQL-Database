@@ -23,7 +23,7 @@
 * ***Written explanation of the query***
 
 ---------
-### Dataset
+### Original Dataset
 File name : [HR_1.csv](HR_1.csv), [HR_2.csv](HR_2.csv) save in data_raw folder
  - The data used in this project originlly come from IBM.  
 
@@ -40,13 +40,13 @@ File name : [HR_1.csv](HR_1.csv), [HR_2.csv](HR_2.csv) save in data_raw folder
     - Using the `sql.connect()` method, the script connects to Databricks SQL Warehouse with a unique token and creates the two tables(`hr_attrition_data`,`hr_personal_data`). EmployeeNumber is defined as the unique index in both tables.
 
 
-* Query : The SQL query performs `joins`, `aggregation`, and `sorting` operations on the data stored in Databricks, and logs the results.
+* Query : The SQL query performs `joins`, `aggregation`, and `sorting` operations on the data stored in Databricks, and logs the results using the `log_query` function in the `query_log.md` file.
 
-    - The `log_query` function records the executed SQL query and its result in the `query_log.md` file.
+    - Specifically, `LEFT JOIN` merges two tables `hr_personal_data` and `hr_attrition_data`, using the EmployeeNumber field. This operation keeps all records from `hr_personal_data` based on the EmployeeNumber.
+    
+    - The `COUNT` clause counts the total number of employees in each department by counting the number of EmployeeNumber entries. The `SUM` calculates the total number employees who resigned in each department by checking if Attrition field is 'Yes' and adding 1 for each occurence.
 
-    - The SQL query joins the `hr_personal_data` and `hr_attrition_data` tables using EmployeeNumber to calculate the total number of employees (TotalEmployees) and attrition count (TotalAttrition) for each department.
-
-    - The query uses a **LEFT JOIN** to merge the two tables on the `EmployeeNumber` field. It calculates the total number of employees in each department using `COUNT(p.EmployeeNumber)`, and the total number of attrition cases by counting the `Attrition` field where the value is "Yes." The results are grouped by department using **GROUP BY**, and sorted alphabetically by department name using **ORDER BY**.
+    - `GROUP BY` groups the results by department, summarizing the total number of employees and attrition cases for each department. Finally, the results are sorted alphabetically by departments name using `ORDER BY`. The detailed SQL query and the final table created are shown in the image below.
         
         [Query log]
         ![Query](Screenshot.png)
